@@ -33,8 +33,4 @@ Empower users with a better understanding of their health:
 
 ## Security Measures
 
-Our commitment to security is unwavering. The following are the pillars of our security approach:
-
-- **End-to-End Encryption**: Relying on AES-256 encryption standards, we ensure the protection of data during transmission and at rest. Individual private keys intensify data privacy.
-- **Secure Communication**: Encrypted channels between the app, NFC tag, and third-party systems, bolstered by SSL/TLS protocols.
-- **User Authentication**: Multi-layered protection with multi-factor authentication, supplemented by biometric options like fingerprint and facial recognition.
+Each user's account will be password protected.
