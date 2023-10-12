@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 import webbrowser
 
 app = Flask(__name__)
@@ -18,6 +18,25 @@ users = {
 def index():
     return "Welcome to the Health Data Management App!"
 
+@app.route('/register', methods=['POST'])
+def register():
+    data = request.get_json()  # Get data from the request
+    
+    # Check if user already exists
+    if data['uid'] in users:
+        return jsonify({'message': 'User already exists'}), 400
+    
+    # In reality, ensure you're hashing the password
+    users[data['uid']] = {
+        'uid': data['uid'],
+        'name': data['name'],
+        'password': data['password'],
+        'email': data['email'],
+        'fitbit_data': ""  # No fitbit data at registration
+    }
+    
+    return jsonify({'message': 'Registered successfully'}), 201
+
 @app.route('/user/<uid>', methods=['GET'])
 def get_user(uid):
     user = users.get(uid)
@@ -31,5 +50,5 @@ def fetch_uid():
 
 
 if __name__ == '__main__':
-    webbrowser.open("http://localhost:5000//user/" + fetch_uid()) 
+    webbrowser.open("http://localhost:5000/user/" + fetch_uid()) 
     app.run(debug=True)
